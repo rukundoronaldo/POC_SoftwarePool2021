@@ -10,7 +10,7 @@ console.log(world);
 
 great("ronaldo", "rukundo");*/
 
-/*type Callback = {(err: Error, result?: undefined): Error, (err: null, result: number): number};
+type Callback = {(err: Error, result?: undefined): Error, (err: null, result: number): number};
 
 function callback(err: Error, result?: undefined): Error;
 function callback(err: null, result: number): number;
@@ -23,10 +23,28 @@ function callback(err: Error | null, result: any): Error | number {
     console.log(`Result: ${result}`);
     return result;
 }
-function superComputer(number1 : number, oparator : string, number2 : number, callback : Callback) {
-    if (oparator == "+")
-        callback(null, number1 + number2);
-}
-superComputer(1, "+", 2, callback);*/
 
+enum opators {
+    add = "+",
+    minus = "-",
+    multiply = "*",
+    divide = "/",
+    modilo = "%"
 }
+function superComputer(number1 : number, oparator : opators, number2 : number, callback : Callback) {
+    switch (oparator) {
+        case opators.add:
+            return callback(null, number1 + number2);
+        case opators.minus:
+            return callback(null, number1 - number2);
+        case opators.multiply:
+            return callback(null, number1 * number2);
+        case opators.divide:
+            return callback(null, number1 / number2);
+        case opators.modilo:
+            return callback(null, number1 % number2);
+        default:
+            return callback(new Error("unknown oparater"));
+    }
+}
+superComputer(1, opators.modilo, 2, callback);
