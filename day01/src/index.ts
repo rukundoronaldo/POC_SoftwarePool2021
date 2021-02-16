@@ -1,50 +1,16 @@
 /* ***typescript ****** */
+import superComputer,{opators, callback} from "./superComputer";
+import {createCosmonaut} from "./createCosmonaut";
+import {getCosmonaut} from "./getCosmonaut";
 
-let world = "hello world";
+
+const world = "hello world";
 
 console.log(world);
 
-/*function great(firstname: string, lastname?: string): void{
-  console.log("hello " + firstname + " " + lastname);
-}
+superComputer(4, opators.add, 5, callback);
 
-great("ronaldo", "rukundo");*/
+//let structure = createCosmonaut({name: "ronaldo", mission: "mars", country: "france"});
+//createCosmonaut("ronaldo", "mars", "france");
 
-type Callback = {(err: Error, result?: undefined): Error, (err: null, result: number): number};
-
-function callback(err: Error, result?: undefined): Error;
-function callback(err: null, result: number): number;
-
-function callback(err: Error | null, result: any): Error | number {
-    if (err) {
-        console.log(err.message);
-        return err;
-    }
-    console.log(`Result: ${result}`);
-    return result;
-}
-
-enum opators {
-    add = "+",
-    minus = "-",
-    multiply = "*",
-    divide = "/",
-    modilo = "%"
-}
-function superComputer(number1 : number, oparator : opators, number2 : number, callback : Callback) {
-    switch (oparator) {
-        case opators.add:
-            return callback(null, number1 + number2);
-        case opators.minus:
-            return callback(null, number1 - number2);
-        case opators.multiply:
-            return callback(null, number1 * number2);
-        case opators.divide:
-            return callback(null, number1 / number2);
-        case opators.modilo:
-            return callback(null, number1 % number2);
-        default:
-            return callback(new Error("unknown oparater"));
-    }
-}
-superComputer(1, opators.modilo, 2, callback);
+console.log(getCosmonaut("./cosmonaut.json"));
