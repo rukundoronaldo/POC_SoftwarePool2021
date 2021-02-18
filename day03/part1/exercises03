@@ -1,0 +1,6 @@
+exo 1:
+SELECT * FROM members;
+SELECT  name,role FROM members;
+SELECT * FROM members WHERE  role = 'manager';
+
+exo 2:
